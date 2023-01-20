@@ -1,71 +1,37 @@
-import tkinter as tk
+import tk
 
-root = tk.Tk()
-root.title("Statiuni turistice din Romania")
-root.geometry("700x300")
+shopping_list = []
 
-destinations_label = tk.Label(root, text="Statiunea:")
-destinations_label.pack()
+def add_item(item):
+    shopping_list.append(item)
+    print("Item added: ", item)
 
-destinations_listbox = tk.Listbox(root)
-destinations_listbox.pack()
+def remove_item(item):
+    shopping_list.remove(item)
+    print("Item removed: ", item)
 
-description_label = tk.Label(root, text="")
-description_label.pack()
+def view_list():
+    print("Lista:")
+    for item in shopping_list:
+        print(item)
 
-destinations = {
-    "Lacul Sarat": {
-        "description": """Statiune balneoclimaterica permanenta, situata la 5 km de Braila, in Campia Baraganului, 
-        la o altitudine de 25 m. Pe fundul lacului se afla namol terapeutic cu grad mare de mineralizare, unul dintre 
-        cele mai importante namoluri sapropelice din tara noastra. Statiunea Lacul Sarat dispune de instalatii pentru 
-        bai si impachetari calde cu namol, hidroterapie si electroterapie, aerosoli, cultura fizica medicala si bai reci cu namol.""",
-        
-    },
-    "Lipova ": {
-        "description": """Statiune balneoclimaterica, situata la 35 km de Arad, in Lunca Muresului, la o altitudine de 138 m. 
-        Pentru tratament, statiunea dispune de instalatii pentru bai calde cu apa minerala, hidroterapie si electroterapie, 
-        solarii pentru aerohelioterapie.""",
-        
-    },
-    "Malnas Bai": {
-        "description": """Statiune balneoclimaterica, situata pe Valea Oltului, in aval de defileul de la Tusnad, la o 
-        altitudine de 565 metrii. Statiunea Malnas a devenit cunoscuta pentru izvoarele de apa minerala si emanatiile de 
-        gaze mofetice, fiind vizitata de multi turisti ce urmeaza cure de tratament aici.""",
-        
-    },
-     "Moneasa ": {
-        "description": """Statiune balneoclimaterica, situata la 18 km de Sebis, la poalele muntilor Codru Moma, la o 
-        altitudine de 280 m, cu ape minerale renumite. Aparatura de tratament a statiunii cuprinde instalatii pentru 
-        bai calde cu apa minerala, fizioterapie, electroterapie, impachetari cu parafina, aerohelioterapie.""",
-        
-    },
-      "Ocna Mures": {
-        "description": """Statiune balneoclimaterica dispusa pe partea stanga a Muresului, la o altitudine de 258 m, 
-        ce dispune de lacuri saline si instalatii pentru aeroterapie, helioterapie, electroterapie si bai calde cu 
-        apa minerala sarata. Statiunea Ocna Mures este una dintre cele mai importante destinatii turistice din Transilvania.""",
-        
-    },
-       "Ocna Sibiului": {
-        "description": """Statiune balneoclimaterica permanenta, aflata la 14 km de Sibiu, in Depresiunea Sibiului la 
-        o altitudine de 410 m. Pentru tratarea diverselor afectiuni, la Ocna Sibiului se gasesc apele sarate ale lacurilor 
-        din imprejurimi, namolul sapropelic si apa minerala a izvorului Horea.""",
-        
-    },
-        "Ocna Sugatag": {
-        "description": """Statiune balneoclimaterica dispusa la 20 km de Sighetul Marmatiei, la poalele lantului vulcanic 
-        Gutai-Tibles, la o altitudine de 490 metrii. Statiunea permanenta este parte componenta a comunei Ocna Sugatag 
-        alcatuita din 4 sate cu o populaţie de aproximativ 4500 locuitori.""",
-        
-    },
-}
+while True:
+    print("Enter 1 pentru a introduce un element in lista.")
+    print("Enter 2 pentru a sterge un element din lista.")
+    print("Enter 3 pentru a vedea lista.")
+    print("Enter 4 pentru a iesi.")
 
-for destination in destinations:
-    destinations_listbox.insert(tk.END, destination)
+    choice = int(input())
 
-def update_description(*args):
-    destination = destinations_listbox.get(destinations_listbox.curselection())
-    description_label.config(text=destinations[destination]['description'])
-
-destinations_listbox.bind("<<ListboxSelect>>", update_description)
-
-root.mainloop()
+    if choice == 1:
+        item = input("Enter pentru a introduce: ")
+        add_item(item)
+    elif choice == 2:
+        item = input("Enter introdu pentru a elimina: ")
+        remove_item(item)
+    elif choice == 3:
+        view_list()
+    elif choice == 4:
+        break
+    else:
+        print("Alegere invalida, introdu din nou.")
